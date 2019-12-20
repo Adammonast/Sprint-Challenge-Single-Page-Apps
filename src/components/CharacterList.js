@@ -48,10 +48,10 @@ const CharacterList = props => {
     return (
       <Link to={`/characters/${character.id}`}>
       <div className="character-card">
+        <img src={image} />
         <p>Name: {name}</p>
         <p>Status: {status}</p>
         <p>Species: {species}</p>
-        <p>Image: {image}</p>
       </div>
       </Link>
     );

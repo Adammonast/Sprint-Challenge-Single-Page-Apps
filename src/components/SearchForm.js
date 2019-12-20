@@ -1,10 +1,7 @@
-import React, {
-  useEffect,
-  useState
-} from "react";
+import React, { useEffect, useState } from "react";
 import axios from "axios";
 
-export default function Characters() {
+export default function SearchForm() {
   const [data, setData] = useState([]);
   const [query, setQuery] = useState("");
 
@@ -14,8 +11,8 @@ export default function Characters() {
         `https://rickandmortyapi.com/api/character/`,
       )
       .then(response => {
-        console.log(response)
-        const characters = response.data.result.filter(
+        console.log(response.data.results)
+        const characters = response.data.results.filter(
           character =>
             character.name
               .toLowerCase()
@@ -41,25 +38,17 @@ export default function Characters() {
           autoComplete="off"
         />
       </form>
-      <div className="spell">
+      <div>
         {data.map(data => {
           return (
             <div
               className="character-list "
-              key={data.result.id}
+              key={data.id}
             >
-              <h2>
-                {data.result.name}
-              </h2>
-              <h3>
-                Status: {data.result.status}
-              </h3>
-              <h3>
-                Species: {data.result.species}
-              </h3>
-              <h3>
-                Image: {data.result.image}
-              </h3>
+              <h2>{data.name}</h2>
+              <p>Status: {data.status}</p>
+              <p>Species: {data.species}</p>
+              <p>Image: {data.image}</p>
             </div>
           );
         })}
